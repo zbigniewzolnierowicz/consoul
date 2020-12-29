@@ -1,0 +1,309 @@
+/*
+Theme Name: Consoul
+Author: Zbigniew Żołnierowicz
+Description: A CLI-inspired theme
+Version: 1.0
+*/
+
+@import "./style/colors/classic-dark.scss";
+
+// base00 - Default Background
+$background: $base00;
+
+// base01 - Lighter Background (Used for status bars, line number and folding marks)
+$background-light: $base01;
+
+// base02 - Selection Background
+$background-selection: $base02;
+
+// base03 - Comments, Invisibles, Line Highlighting
+$invisibles: $base03;
+
+// base04 - Dark Foreground (Used for status bars)
+$foreground-dark: $base04;
+
+// base05 - Default Foreground, Caret, Delimiters, Operators
+$foreground: $base05;
+
+// base06 - Light Foreground (Not often used)
+$foreground-light: $base06;
+
+// base07 - Light Background (Not often used)
+$background-light: $base07;
+
+// base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+$variables: $base08;
+
+// base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url
+$constants: $base09;
+
+// base0A - Classes, Markup Bold, Search Text Background
+$classes: $base0A;
+
+// base0B - Strings, Inherited Class, Markup Code, Diff Inserted
+$strings: $base0B;
+
+// base0C - Support, Regular Expressions, Escape Characters, Markup Quotes
+$support: $base0C;
+
+// base0D - Functions, Methods, Attribute IDs, Headings
+$functions: $base0D;
+
+// base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed
+$keywords: $base0E;
+
+// base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+$deprecated: $base0F;
+
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    min-width: 100%;
+}
+
+body {
+    background: $background;
+    color: $foreground;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.header {
+    padding-block-start: 1em;
+    padding-inline-start: 5ch;
+    padding-inline-end: 5ch;
+    margin-block-end: 1em;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.0;
+    }
+}
+
+.cursor {
+    &::after {
+        content: '_';
+        animation: blink 1s step-start 0s infinite;
+    }
+}
+
+h1.name-of-page {
+    a {
+        color: $constants;
+        text-decoration: none;
+    }
+}
+
+h2.description-of-page {
+    color: $foreground-dark;
+}
+
+.post-on-index {
+    
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding: 1em;
+    
+    &__entry {
+        padding-inline-start: 2ch;
+        margin-block-start: 0.4em;
+        margin-block-end: 0.4em;
+        &__title {
+            color: $variables;
+        }
+        &__content {
+            color: $strings;
+            &::before, &::after {
+                content: '\"';
+            }
+            &-excerpt {
+                color: $strings;
+                padding-inline-start: 2ch;
+                
+                p {
+                    margin-block-start: 0.4em;
+                    margin-block-end: 0.4em;
+                }
+                
+                &::before, &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    &__start {
+        color: $foreground;
+        &__title {
+            font-weight: bold;
+        }
+    }
+    
+    &:hover {
+        background: $background-selection;
+    }
+}
+
+.keyword {
+    color: $keywords;
+}
+
+.variable {
+    color: $variables;
+}
+
+.menu-main-container {
+    margin: 0;
+    background: $background-selection;
+    & > ul {
+        margin: 0;
+        & > .menu-item {
+            margin-inline-start: 2ch;
+            margin-inline-end: 2ch;
+            padding-inline-start: 2ch;
+            padding-inline-end: 2ch;
+            padding-block-start: 1em;
+            padding-block-end: 1em;
+            &:hover {
+                background: $invisibles;
+            }
+        }
+    }
+    ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding-inline-start: 0;
+        a {
+            color: $foreground-dark;
+        }
+        ul {
+            display: none;
+            position: absolute;
+            list-style: none;
+            top: 3em;
+            left: 0;
+            z-index: 99999;
+            background: $background-selection;
+            box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+            padding-inline-start: 0;
+            max-width: 25ch;
+            min-width: 15ch;
+            li {
+                a {
+                    display: block;
+                    width: 100%;
+                    padding-inline-start: 0.33em;
+                    padding-inline-end: 0.33em;
+                    padding-block-start: 0.33em;
+                    padding-block-end: 0.33em;
+                }
+                &:hover {
+                    background: $invisibles;
+                }
+            }
+        }
+        li:hover > ul {
+            display: block;
+        }
+    }
+    li {
+        position: relative;
+    }
+}
+
+.footer {
+
+    padding-inline: 1em;
+    margin-block: 5ch;
+
+    &__account {
+        color: $variables;
+    }
+    &__hostname {
+        color: $constants;
+    }
+    &__at {
+        color: $foreground-dark;
+    }
+    &__directory {
+        color: $strings;
+    }
+    &__text {
+        overflow: hidden;
+    }
+}
+
+.post-standalone {
+
+    min-height: 75vh;
+    
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding: 1em;
+    
+    &__entry {
+        padding-inline-start: 2ch;
+        margin-block-start: 0.4em;
+        margin-block-end: 0.4em;
+        &__title {
+            color: $variables;
+        }
+        &__content {
+            color: $strings;
+            &::before, &::after {
+                content: '\"';
+            }
+            &-excerpt {
+                color: $strings;
+                padding-inline-start: 2ch;
+                
+                p {
+                    margin-block-start: 0.4em;
+                    margin-block-end: 0.4em;
+                }
+                
+                &::before, &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    &__start {
+        color: $foreground;
+        &__title {
+            font-weight: bold;
+        }
+    }
+
+    &__content {
+        $max-width-of-content: 80ch;
+
+        p {
+            max-width: $max-width-of-content;
+            margin-inline: auto;
+            margin-block: 1em;
+            line-height: 120%;
+            word-break: break-all;
+            text-align: justify;
+        }
+
+        figure.size-large img {
+            object-fit: contain;
+        }
+    }
+}
+
+.wp-block-embed-youtube {
+    margin: 0 auto;
+}
+
+.wp-block-embed-youtube, .wp-block-embed__wrapper {
+    width: fit-content;
+}
