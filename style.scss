@@ -55,6 +55,7 @@ $keywords: $base0E;
 // base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 $deprecated: $base0F;
 
+$max-width-of-content: 100ch;
 
 * {
     box-sizing: border-box;
@@ -106,6 +107,8 @@ h2.description-of-page {
     
     margin-block-start: 1em;
     margin-block-end: 1em;
+    margin-inline: auto;
+    max-width: 120ch;
     padding: 1em;
     
     &__entry {
@@ -283,8 +286,6 @@ h2.description-of-page {
     }
 
     &__content {
-        $max-width-of-content: 80ch;
-
         p {
             max-width: $max-width-of-content;
             margin-inline: auto;
@@ -296,6 +297,12 @@ h2.description-of-page {
 
         figure.size-large img {
             object-fit: contain;
+        }
+
+        figcaption {
+            max-width: $max-width-of-content;
+            margin-inline: auto;
+            text-align: center;
         }
     }
 }
