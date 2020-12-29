@@ -87,7 +87,7 @@ body {
 
 .cursor {
     &::after {
-        content: '_';
+        content: ' _';
         animation: blink 1s step-start 0s infinite;
     }
 }
@@ -286,9 +286,16 @@ h2.description-of-page {
     }
 
     &__content {
-        p {
+        h1, h2, h3, h4, h5, h6 {
+            width: fit-content;
+        }
+
+        h1, h2, h3, h4, h5, h6, p, figcaption, ul, li {
             max-width: $max-width-of-content;
             margin-inline: auto;
+        }
+
+        p {
             margin-block: 1em;
             line-height: 120%;
             word-break: break-all;
@@ -300,8 +307,6 @@ h2.description-of-page {
         }
 
         figcaption {
-            max-width: $max-width-of-content;
-            margin-inline: auto;
             text-align: center;
         }
     }
